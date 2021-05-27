@@ -1,2 +1,2 @@
-# redux-login-page
+# Reesby HR
 ## test username: admin, password: admin123

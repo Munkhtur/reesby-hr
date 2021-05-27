@@ -9,7 +9,7 @@ function App() {
     const user = useSelector(state => state.auth)
     return (
         <Router>
-            <div className="topBar"> top bar
+            <div className="topBar"> Reesby HR
             </div>
             <div className="main">
 

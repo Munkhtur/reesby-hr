@@ -4,8 +4,10 @@ import validate from './../validateInfo'
 import userData from './../userDatabase'
 import { login } from './../actions/login'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const Signup = () => {
+    const history = useHistory()
     const dispatch = useDispatch()
     const { handleChange, details, errors, setErrors } = useForm()
 
@@ -17,23 +19,19 @@ const Signup = () => {
 
         if (Object.keys(newErrors).length === 0) {
             const newUser = {
-                name: details.username,
                 email: details.email,
-                password: details.password
+                password: details.password,
+                approved: false
             }
             userData.push(newUser)
-            dispatch(login(newUser))
+            history.push('/pending')
         }
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Create your account</h2>
+            <h2 className="heading">Create your account</h2>
 
-            <div className="form-group">
-                <input type="text" name='username' placeholder="Name" value={details.username} onChange={handleChange} />
-                {errors.username && <p>{errors.username}</p>}
-            </div>
             <div className="form-group">
                 <input type="email" name='email' placeholder="Email" value={details.email} onChange={handleChange} />
                 {errors.email && <p>{errors.email}</p>}

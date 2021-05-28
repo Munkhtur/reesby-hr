@@ -11,11 +11,14 @@
   }
 
   .topBar{
+    display: flex;
+    align-items: center;
       background-color: #31e8dc;
     font-size: large;
     font-weight: bold;
     height: 60px;
     margin: 20px 0 20px 0;
+    padding: 20px
   }
 
   .main{
@@ -23,6 +26,10 @@
     align-items: center;
     justify-content: center;
 
+  }
+
+  .heading{
+    margin-bottom: 30px;
   }
 
   form{
@@ -66,7 +73,7 @@ form .form-group p{
 }
 
 .submitBtn{
-  width: 60%;
+  width: 51%;
 }
 
 a{

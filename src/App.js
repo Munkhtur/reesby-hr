@@ -4,6 +4,8 @@ import LoginPage from './components/Login'
 import SignupPage from './components/Signup'
 import HomePage from './components/Home'
 import { useSelector } from 'react-redux'
+import PendingPage from './components/PendingPage';
+import AdminPage from './components/AdminPage';
 
 function App() {
     const user = useSelector(state => state.auth)
@@ -22,6 +24,12 @@ function App() {
                     </Route>
                     <Route path='/dashboard'>
                         {user.isAuthenticated ? <HomePage /> : <Redirect to='/' />}
+                    </Route>
+                    <Route path='/pending'>
+                        <PendingPage />
+                    </Route>
+                    <Route path='/admin'>
+                        {!user.isAdmin ? <Redirect to="/dashboard" /> : <AdminPage />}
                     </Route>
                 </Switch>
             </div>

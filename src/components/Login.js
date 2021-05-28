@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import { login } from './../actions/login'
 import { setError, clearError } from './../actions/errorsAction'
 import { useDispatch, useSelector } from 'react-redux'
 import usersData from '../userDatabase'
 
 const Login = () => {
+    const history = useHistory()
     const dispatch = useDispatch()
     const errors = useSelector(state => state.error)
     const [details, setDetails] = useState({
@@ -15,10 +16,15 @@ const Login = () => {
 
     const onLogin = (e) => {
         e.preventDefault()
-        const validUser = usersData.filter(user => user.name === details.username)[0]
+        const validUser = usersData.filter(user => user.username === details.username)[0]
+
         if (!validUser || validUser.password !== details.password) {
             setDetails({ ...details, username: '', password: '' })
             dispatch(setError('Username or password is invalid'))
+            return
+        }
+        if (validUser && validUser.password === details.password && !validUser.approved) {
+            history.push('/pending')
             return
         }
         dispatch(login(validUser))
@@ -27,10 +33,10 @@ const Login = () => {
 
     return (
         <form onSubmit={onLogin}>
-            <h2>Login</h2>
+            <h2 className="heading">Login</h2>
 
             <div className="form-group">
-                <input type="text" name='name' placeholder="Username" value={details.username} onChange={e => setDetails({ ...details, username: e.target.value })} />
+                <input type="email" name='name' placeholder="Username" value={details.username} onChange={e => setDetails({ ...details, username: e.target.value })} />
             </div>
             <div className="form-group">
                 <input type="password" name='password' placeholder="Password" value={details.password} onChange={e => setDetails({ ...details, password: e.target.value })} />

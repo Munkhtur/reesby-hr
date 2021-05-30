@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
                 ...state,
                 isAuthenticated: true,
                 user: action.payload,
-
+                
             }
 
         case 'LOGOUT':
@@ -27,7 +27,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: false,
-                isAdmin: false,
+                isAdmin: false, 
                 user: null
             }
         default:

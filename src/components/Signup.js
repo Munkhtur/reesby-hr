@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useForm from './../useForm'
 import validate from './../validateInfo'
 import userData from './../userDatabase'
-import { login } from './../actions/login'
-import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import {v4 as uuid} from 'uuid'
 
 const Signup = () => {
     const history = useHistory()
-    const dispatch = useDispatch()
     const { handleChange, details, errors, setErrors } = useForm()
 
     const handleSubmit = e => {
@@ -19,10 +17,12 @@ const Signup = () => {
 
         if (Object.keys(newErrors).length === 0) {
             const newUser = {
+                id: uuid(),
                 email: details.email,
                 password: details.password,
                 approved: false
             }
+            console.log(newUser)
             userData.push(newUser)
             history.push('/pending')
         }

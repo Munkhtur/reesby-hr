@@ -1,53 +1,51 @@
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
-  body{
-    background-color: #eeeeee;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+body {
+  background-color: #eeeeee;
+}
 
-  }
+.topBar {
+  display: flex;
+  align-items: center;
+  background-color: #31e8dc;
+  font-size: large;
+  font-weight: bold;
+  height: 60px;
+  margin: 20px 0 20px 0;
+  padding: 20px;
+}
 
-  .topBar{
-    display: flex;
-    align-items: center;
-      background-color: #31e8dc;
-    font-size: large;
-    font-weight: bold;
-    height: 60px;
-    margin: 20px 0 20px 0;
-    padding: 20px
-  }
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.heading {
+  margin-bottom: 30px;
+}
 
-  }
-
-  .heading{
-    margin-bottom: 30px;
-  }
-
-  form{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
 form .form-group {
   margin-bottom: 10px;
 }
 
-  input{
-    border: none;
-    outline: none;
-  }
+input {
+  border: none;
+  outline: none;
+}
 form .form-group input {
   display: block;
   width: 100%;
@@ -55,38 +53,75 @@ form .form-group input {
   border-radius: 5px;
   transition: 0.4s;
 }
-form .form-group input:focus{
+form .form-group input:focus {
   box-shadow: 0px 0px 3px cyan;
 }
 
-form .form-group input[type="submit"]{
+form .form-group input[type='submit'] {
   display: block;
   background-color: #0bdfdf;
   color: white;
- 
-  font-weight:600;
+
+  font-weight: 600;
 }
 
-form .form-group p{
+form .form-group p {
   color: red;
   font-size: small;
 }
 
-.submitBtn{
+.submitBtn {
   width: 51%;
 }
 
-a{
+a {
   text-decoration: none;
   color: #5180b5;
 }
-a:hover{
+a:hover {
   text-decoration: underline;
 }
 
-.errorMessage{
+.errorMessage {
   font-size: small;
-  color: red
+  color: red;
 }
 
+.adminBody {
+  width: 100%;
+  padding: 20px;
+}
 
+table,
+th,
+td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  font-weight: bold;
+  font-style: italic;
+}
+
+@media (max-width: 500px) {
+  .heading {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  form .form-group input[type='submit'] {
+    font-size: 10px;
+    padding: 5;
+  }
+  form a {
+    font-size: 10px;
+  }
+}

@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
-import { Link, Redirect, useHistory } from 'react-router-dom'
+import { Link, Redirect, useHistory, useLocation } from 'react-router-dom'
 import { login } from './../actions/login'
 import { setError, clearError } from './../actions/errorsAction'
 import { useDispatch, useSelector } from 'react-redux'
 import usersData from '../userDatabase'
 
 const Login = () => {
+    // const location = useLocation()
+    // console.log(location)
+
     const history = useHistory()
     const dispatch = useDispatch()
     const errors = useSelector(state => state.error)
     const [details, setDetails] = useState({
-        username: '',
-        password: ''
+        username: 'admin@mail.com',
+        password: 'admin123'
     })
 
     const onLogin = (e) => {
@@ -29,6 +32,7 @@ const Login = () => {
         }
         dispatch(login(validUser))
         dispatch(clearError())
+        localStorage.setItem('userId', validUser.id)
     }
 
     return (

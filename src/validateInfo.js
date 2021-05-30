@@ -1,10 +1,6 @@
 export default function (details) {
     let errors = {}
 
-    if (!details.username.trim()) {
-        errors.username = '* Username Required'
-    }
-
     if (!details.email) {
         errors.email = '* Email required';
     } else if (!/\S+@\S+\.\S+/.test(details.email)) {

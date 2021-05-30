@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 const useForm = () => {
     const dispatch = useDispatch()
     const [details, setDetails] = useState({
-        username: '',
+
         email: '',
         password: '',
         password2: '',

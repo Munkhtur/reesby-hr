@@ -7,15 +7,16 @@ import userData from './../userDatabase'
 
 
 const Home = () => {
-    console.log(userData)
+
     const auth = useSelector(state => state.auth)
     const { user } = auth
     const dispatch = useDispatch()
     const handleLogout = (e) => {
         e.preventDefault()
-        console.log('logout')
+        localStorage.removeItem('userId')
         dispatch(logout())
     }
+    
     return (
         <div>
             Welcome, {user.name}

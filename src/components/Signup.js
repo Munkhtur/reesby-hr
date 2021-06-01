@@ -1,7 +1,6 @@
 import React from 'react'
 import useForm from './../useForm'
 import validate from './../validateInfo'
-import userData from './../userDatabase'
 import { useHistory } from 'react-router-dom'
 import {v4 as uuid} from 'uuid'
 
@@ -22,13 +21,13 @@ const Signup = () => {
                 password: details.password,
                 approved: false
             }
-            console.log(newUser)
-            userData.push(newUser)
-            history.push('/pending')
+            history.push('/welcome',newUser)
         }
     }
 
     return (
+        <div className="formDiv">
+
         <form onSubmit={handleSubmit}>
             <h2 className="heading">Create your account</h2>
 
@@ -47,9 +46,8 @@ const Signup = () => {
             <div className="form-group submitBtn">
                 <input type="submit" value="Submit" />
             </div>
-
-
         </form>
+        </div>
     )
 }
 

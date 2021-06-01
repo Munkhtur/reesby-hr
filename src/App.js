@@ -9,6 +9,7 @@ import AdminPage from './components/AdminPage';
 import UserEdit from './components/UserEdit';
 import userData from './userDatabase'
 import {login} from './actions/login'
+import WelcomePage from './components/WelcomePage';
 
 function App() {
     const history = useHistory()
@@ -21,8 +22,10 @@ function App() {
     // }, [location.pathname])
 
     const localUser = localStorage.getItem('userId')
-    if(localUser === !null){
+
+    if(localUser !== null){
         const validUser = userData.filter(user => user.id ===localUser)[0]
+
         dispatch(login(validUser))
     }
 
@@ -51,6 +54,9 @@ function App() {
                     </Route>
                     <Route exact path='/admin/user-edit/:id'>
                         {!user.isAdmin ? <Redirect to="/dashboard" /> : <UserEdit />}
+                    </Route>
+                    <Route path="/welcome">
+                        <WelcomePage />
                     </Route>
                     {/* <Route exact path='/admin/user-edit/:id' component={<UserEdit />}></Route> */}
                 </Switch>

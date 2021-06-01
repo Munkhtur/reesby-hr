@@ -36,6 +36,7 @@ const Login = () => {
     }
 
     return (
+        <div className="formDiv">
         <form onSubmit={onLogin}>
             <h2 className="heading">Login</h2>
 
@@ -51,6 +52,7 @@ const Login = () => {
             {errors && <p className="errorMessage">{errors.msg}</p>}
             <Link to="/signup"> Create an account</Link>
         </form>
+        </div>
     )
 }
 

@@ -26,6 +26,10 @@ body {
   justify-content: center;
 }
 
+.formDiv {
+  width: 20%;
+}
+
 .heading {
   margin-bottom: 30px;
 }
@@ -36,10 +40,11 @@ form {
   position: relative;
   align-items: center;
   justify-content: center;
-  width: 30%;
+  width: 100%;
 }
 form .form-group {
   margin-bottom: 10px;
+  width: 100%;
 }
 
 input {
@@ -61,7 +66,7 @@ form .form-group input[type='submit'] {
   display: block;
   background-color: #0bdfdf;
   color: white;
-
+  width: 100%;
   font-weight: 600;
 }
 
@@ -71,7 +76,7 @@ form .form-group p {
 }
 
 .submitBtn {
-  width: 51%;
+  width: 100%;
 }
 
 a {
@@ -87,9 +92,24 @@ a:hover {
   color: red;
 }
 
-.adminBody {
-  width: 100%;
+.content,
+.contentHome {
+  width: 80%;
   padding: 20px;
+  border: rgb(151, 136, 136) 1px solid;
+  border-radius: 5px;
+}
+
+.controller {
+  margin-top: 20px;
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: rgb(139, 134, 134) 1px solid;
+}
+.controlBtn {
+  padding: 5px;
+  width: 80%;
 }
 
 table,
@@ -111,6 +131,30 @@ th {
   font-style: italic;
 }
 
+.welcomeForm {
+  width: 50%;
+}
+
+.welcomeForm form .form-group select {
+  background-color: transparent;
+  border: grey 1px solid;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0;
+  width: 100%;
+  cursor: pointer;
+}
+.welcomeForm form .form-group input {
+  border: 1px solid grey;
+}
+
+.select {
+  width: 100%;
+  /* font-size: 1.25rem; */
+  line-height: 1.1;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+
 @media (max-width: 500px) {
   .heading {
     font-size: 15px;
@@ -124,4 +168,17 @@ th {
   form a {
     font-size: 10px;
   }
+
+  .welcomeForm,
+  .formDiv {
+    width: 70%;
+  }
+  option {
+    font-size: 10px;
+    width: 50%;
+  }
+
+  /* .welcomeForm {
+    font-size: small;
+  } */
 }

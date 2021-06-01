@@ -5,13 +5,14 @@ import userData from './../userDatabase'
 const UserEdit = () => {
     const { id } = useParams()
     const history = useHistory()
-    const user = userData.filter(user => user.id === Number(id))[0]
+    const user = userData.filter(user => user.id ===id)[0]
 
     // console.log(user1)
     // const user = { fullName: '', username: '', approved: false }
     const [details, setDetails] = useState({
         fullName: user.fullName,
         username: user.username,
+        department: user.department,
         approved: user.approved
     })
 
@@ -30,13 +31,17 @@ const UserEdit = () => {
     }
 
     return (
+<div className="formDiv">
 
         <form onSubmit={handleSubmit}>
             <div className="form-group">
                 <input type="text" name='name' placeholder="Full Name" value={details.fullName || ''} onChange={e => setDetails({ ...details, fullName: e.target.value })} />
             </div>
             <div className="form-group"> 
-                <input type="email" name='name' placeholder="Username" value={details.username} onChange={e => setDetails({ ...details, username: e.target.value })} />
+                <input type="email" name='email' placeholder="Username" value={details.username} onChange={e => setDetails({ ...details, username: e.target.value })} />
+            </div>
+            <div className="form-group"> 
+                <input type="text" name='department' placeholder="Department" value={details.department} onChange={e => setDetails({ ...details, department: e.target.value })} />
             </div>
             <input type="checkbox" id="status" name="status" value="Approve" onChange={handleChange} checked={details.approved} />
             <label> Approve</label><br></br>
@@ -48,6 +53,7 @@ const UserEdit = () => {
 
 
         </form>
+</div>
 
     )
 }

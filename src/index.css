@@ -5,6 +5,7 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
 }
+@import '~antd/dist/antd.css';
 body {
   background-color: #eeeeee;
 }
@@ -92,12 +93,27 @@ a:hover {
   color: red;
 }
 
-.content,
+.userDetails {
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .contentHome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.content,
+.controllerContainer,
+.calendarContainer {
   width: 80%;
   padding: 20px;
   border: rgb(151, 136, 136) 1px solid;
   border-radius: 5px;
+  margin-top: 20px;
 }
 
 .controller {
@@ -107,9 +123,25 @@ a:hover {
   grid-template-columns: repeat(4, 1fr);
   border-top: rgb(139, 134, 134) 1px solid;
 }
+.controller p {
+  padding: 0;
+  margin: 0;
+}
 .controlBtn {
   padding: 5px;
   width: 80%;
+  font-weight: bold;
+}
+
+.calendarContainer {
+  display: block;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 0 20px;
 }
 
 table,
@@ -155,6 +187,41 @@ th {
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
 }
 
+.events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.events .ant-badge-status {
+  width: 100%;
+  overflow: hidden;
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.notes-month {
+  font-size: 28px;
+  text-align: center;
+}
+.notes-month section {
+  font-size: 28px;
+}
+
+.ant-picker-content thead {
+  background-color: rgb(52, 247, 188);
+  font-size: 20px;
+}
+.ant-picker-panel {
+  /* width: 1000px !important; */
+  overflow: scroll;
+}
+.ant-picker-body {
+  /* width: 100%; */
+  width: 800px;
+
+  /* overflow: scroll !important; */
+}
+
 @media (max-width: 500px) {
   .heading {
     font-size: 15px;
@@ -177,7 +244,33 @@ th {
     font-size: 10px;
     width: 50%;
   }
-
+  .userDetails {
+    font-size: 10px;
+  }
+  .userDetails p,
+  .userDetails h1 {
+    margin: 0;
+  }
+  .controller {
+    margin-top: 20px;
+    padding-top: 20px;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr;
+    border-top: rgb(139, 134, 134) 1px solid;
+    justify-items: center;
+  }
+  .totalHour,
+  .clockin,
+  .clockout,
+  .break {
+    width: 100%;
+    text-align: center;
+  }
+  .calendarHeader {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
   /* .welcomeForm {
     font-size: small;
   } */

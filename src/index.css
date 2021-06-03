@@ -116,6 +116,11 @@ a:hover {
   margin-top: 20px;
 }
 
+.controlHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
 .controller {
   margin-top: 20px;
   padding-top: 20px;
@@ -131,6 +136,12 @@ a:hover {
   padding: 5px;
   width: 80%;
   font-weight: bold;
+}
+
+.clock {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(24, 144, 255);
 }
 
 .calendarContainer {
@@ -185,6 +196,10 @@ th {
   /* font-size: 1.25rem; */
   line-height: 1.1;
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+
+.calendarEvent {
+  color: rgb(34, 63, 226);
 }
 
 .events {
@@ -244,8 +259,21 @@ th {
     font-size: 10px;
     width: 50%;
   }
+  .controlHeader {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
   .userDetails {
     font-size: 10px;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+  }
+  .userDetailRight {
+    display: flex;
+    justify-content: space-between;
   }
   .userDetails p,
   .userDetails h1 {

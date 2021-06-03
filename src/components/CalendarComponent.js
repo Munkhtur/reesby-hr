@@ -1,15 +1,10 @@
 import React from 'react';
-import { Calendar, Badge, Button } from 'antd';
+import { Calendar, Badge, Button, Tag } from 'antd';
 import moment from 'moment';
 
 const CalendarComponent = ({ auth }) => {
   const { user } = auth;
   let enabled = true;
-
-  const day1 = moment('06-01-20 11:40 PM', 'MM-DD-YYYY hh:mm A');
-  const day2 = moment(new Date());
-  console.log(day1.year() === day2.year());
-  console.log(day2.year());
 
   const getListData = (value) => {
     return user.events.filter(
@@ -25,7 +20,10 @@ const CalendarComponent = ({ auth }) => {
       <ul className='events'>
         {listData.map((item) => (
           <li key={item.content}>
-            <Badge status={item.type} text={item.content} />
+            {/* <Badge status={item.type} text={item.content} /> */}
+            <small className='calendarEvent'>
+              {'-'} {item.content}
+            </small>
           </li>
         ))}
       </ul>

@@ -8,7 +8,7 @@ const users = [
     password: 'admin123',
     approved: true,
     department: 'HR',
-    workedHours: 1.08e8,
+    workedHours: 30,
     events: [
       {
         date: moment('06-01-21 11:40 PM', 'MM-DD-YYYY hh:mm A'),

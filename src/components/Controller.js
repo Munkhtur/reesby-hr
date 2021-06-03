@@ -5,6 +5,7 @@ import { logout } from './../actions/logout';
 import msToTime from './../utils/msToTime';
 import { Button } from 'antd';
 import userData from './../userDatabase';
+import decTime from './../utils/decTime';
 
 const Controller = ({ auth }) => {
   const dispatch = useDispatch();
@@ -16,15 +17,17 @@ const Controller = ({ auth }) => {
   useEffect(() => {
     let elapsed = clock.end - clock.start;
     // let newTotal = total + elapsed;
-    setTotal(total + elapsed);
+    console.log(Math.round((total + elapsed / 3600000) * 100) / 100);
+
+    setTotal(Math.round((total + elapsed / 3600000) * 100) / 100);
     const obj = { workedHours: total };
     const edited = { ...user, ...obj };
-    // userData.map((el, i) => {
-    //   if (el.id === user.id) {
-    //     userData.splice(i, 1, edited);
-    //   }
-    // });
-    // console.log(userData);
+    userData.map((el, i) => {
+      if (el.id === user.id) {
+        userData.splice(i, 1, edited);
+      }
+    });
+    console.log(userData);
     console.log('useEff');
   }, [clock.end]);
 
@@ -46,7 +49,6 @@ const Controller = ({ auth }) => {
   const takeBreak = () => {
     setStatus('onbreak');
     setClock({ ...clock, end: new Date() });
-    console.log(`onbreak`);
   };
   const endBreak = () => {
     setStatus('clockedin');
@@ -54,19 +56,28 @@ const Controller = ({ auth }) => {
   };
 
   const refresh = () => {
-    console.log('refresh');
-    clockOut();
-    setTimeout(() => {
-      clockIn();
-    }, 2000);
+    const now = new Date();
+    const elapsed = now - clock.start;
+    setClock({ ...clock, start: new Date() });
+    setTotal(Math.round((total + elapsed / 3600000) * 100) / 100);
   };
 
   return (
     <div className='controllerContainer'>
-      <div className='userDetails'>
-        <h1>{user.fullName}</h1>
-        <p>{user.username}</p>
-        <p>{user.department}</p>
+      <div className='controlHeader'>
+        <div className='userDetails'>
+          <h1>{user.fullName}</h1>
+          <p>{user.username}</p>
+          <p>{user.department}</p>
+        </div>
+        <div className='userDetailRight'>
+          {auth.isAdmin && (
+            <Button>
+              <Link to='/admin'> admin page</Link>
+            </Button>
+          )}
+          <Button onClick={handleLogout}>Logout</Button>
+        </div>
       </div>
       <div className='controller'>
         <div className='clockin'>
@@ -104,15 +115,13 @@ const Controller = ({ auth }) => {
           </Button>
         </div>
         <div className='totalHour'>
-          <p>{msToTime(total)}</p>
+          <p className='clock'>{decTime(total)}</p>
           <p>Total hours</p>
-          <Button type='link' onClick={refresh}>
+          <Button disabled={status === 'onbreak'} type='link' onClick={refresh}>
             Refresh
           </Button>
         </div>
       </div>
-      <button onClick={handleLogout}>Logout</button>
-      {auth.isAdmin && <Link to='/admin'> admin page</Link>}
     </div>
   );
 };

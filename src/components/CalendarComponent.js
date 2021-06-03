@@ -1,10 +1,38 @@
-import React from 'react';
-import { Calendar, Badge, Button, Tag } from 'antd';
+import React, { useState } from 'react';
+import { Calendar, Button, Modal } from 'antd';
 import moment from 'moment';
 
 const CalendarComponent = ({ auth }) => {
   const { user } = auth;
   let enabled = true;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalInput, setModalInput] = useState('');
+  const [inputDate, setInputDate] = useState(null);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+
+    if (modalInput !== '') {
+      const newEvent = {
+        date: inputDate,
+        type: 'success',
+        content: modalInput,
+      };
+      user.events.push(newEvent);
+      setInputDate(null);
+      setModalInput('');
+    }
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+    setInputDate(null);
+    setModalInput('');
+  };
 
   const getListData = (value) => {
     return user.events.filter(
@@ -32,26 +60,28 @@ const CalendarComponent = ({ auth }) => {
 
   function onSelectLocal(v) {
     if (enabled) {
-      const title = prompt('Enter event title');
-
-      if (title !== '' && title !== null) {
-        const newEvent = { date: v, type: 'success', content: title };
-        user.events.push(newEvent);
-      }
+      setInputDate(v);
+      showModal();
     }
   }
 
   return (
     <div className='calendarContainer'>
+      <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <input
+          type='text'
+          value={modalInput}
+          placeholder='Enter event'
+          onChange={(e) => {
+            setModalInput(e.target.value);
+          }}
+        ></input>
+      </Modal>
       <Calendar
         onSelect={onSelectLocal}
         dateCellRender={dateCellRender}
         headerRender={({ value, type, onChange, onTypeChange }) => {
           const current = value.clone();
-          const onChangeLocal = (e) => {
-            current.month(current.month() - 1);
-            onChange(current);
-          };
 
           return (
             <div className='calendarHeader'>

@@ -114,6 +114,7 @@ a:hover {
   border: rgb(151, 136, 136) 1px solid;
   border-radius: 5px;
   margin-top: 20px;
+  background-color: #ffffff;
 }
 
 .controlHeader {
@@ -232,7 +233,7 @@ th {
 }
 .ant-picker-body {
   /* width: 100%; */
-  width: 800px;
+  width: 100%;
 
   /* overflow: scroll !important; */
 }
@@ -302,4 +303,10 @@ th {
   /* .welcomeForm {
     font-size: small;
   } */
+  .ant-picker-body {
+    /* width: 100%; */
+    width: 800px;
+
+    /* overflow: scroll !important; */
+  }
 }

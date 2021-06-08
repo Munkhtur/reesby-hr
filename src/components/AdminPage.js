@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import userData from './../userDatabase';
-import msToTime from './../utils/msToTime';
-import decTime from './../utils/decTime';
 
 const AdminPage = () => {
   const history = useHistory();

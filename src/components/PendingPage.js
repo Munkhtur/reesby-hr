@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const PendingPage = (props) => {
-    console.log(props)
-    return (
-        <div>
-            <h1>User account pending. Waiting for HR approval. </h1>
+const PendingPage = () => {
+  return (
+    <div>
+      <h1>User account pending. Waiting for HR approval. </h1>
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default PendingPage
+export default PendingPage;

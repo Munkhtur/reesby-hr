@@ -13,7 +13,7 @@ const users = [
       {
         date: moment('06-01-21 11:40 PM', 'MM-DD-YYYY hh:mm A'),
         type: 'warning',
-        content: 'This is warning event.',
+        content: 'This is warning event.', 
       },
       {
         date: moment('06-05-21 11:40 PM', 'MM-DD-YYYY hh:mm A'),

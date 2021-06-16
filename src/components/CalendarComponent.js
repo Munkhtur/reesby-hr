@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { Calendar, Button, Modal } from 'antd';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { addEvent } from './../actions/addEvent';
 
 const CalendarComponent = ({ auth }) => {
+  const dispatch = useDispatch();
+  const events = useSelector((state) => state.events);
   const { user } = auth;
+
   let enabled = true;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalInput, setModalInput] = useState('');
@@ -22,7 +27,8 @@ const CalendarComponent = ({ auth }) => {
         type: 'success',
         content: modalInput,
       };
-      user.events.push(newEvent);
+
+      dispatch(addEvent(newEvent));
       setInputDate(null);
       setModalInput('');
     }
@@ -35,19 +41,21 @@ const CalendarComponent = ({ auth }) => {
   };
 
   const getListData = (value) => {
-    return user.events.filter(
-      (event) =>
-        event.date.year() === value.year() &&
-        event.date.month() === value.month() &&
-        event.date.date() === value.date()
-    );
+    return events.filter((event) => {
+      const date = moment(event.date);
+      return (
+        date.year() === value.year() &&
+        date.month() === value.month() &&
+        date.date() === value.date()
+      );
+    });
   };
   function dateCellRender(value) {
     const listData = getListData(value);
     return (
       <ul className='events'>
-        {listData.map((item) => (
-          <li key={item.content}>
+        {listData.map((item, i) => (
+          <li key={i}>
             {/* <Badge status={item.type} text={item.content} /> */}
             <small className='calendarEvent'>
               {'-'} {item.content}
@@ -60,7 +68,8 @@ const CalendarComponent = ({ auth }) => {
 
   function onSelectLocal(v) {
     if (enabled) {
-      setInputDate(v);
+      console.log(v);
+      setInputDate(v.format('YYYY-MM-DD'));
       showModal();
     }
   }

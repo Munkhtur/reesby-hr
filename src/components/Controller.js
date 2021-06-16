@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from './../actions/logout';
-import msToTime from './../utils/msToTime';
 import { Button } from 'antd';
-import userData from './../userDatabase';
 import decTime from './../utils/decTime';
+import { updateUser } from './../actions/updateUser';
 
 const Controller = ({ auth }) => {
   const dispatch = useDispatch();
   const { user } = auth;
-  const [total, setTotal] = useState(user.workedHours);
+  const [total, setTotal] = useState(user.total_hours);
   const [status, setStatus] = useState('clockedout');
   const [clock, setClock] = useState({ start: null, end: null });
 
@@ -20,21 +19,14 @@ const Controller = ({ auth }) => {
     console.log(Math.round((total + elapsed / 3600000) * 100) / 100);
 
     setTotal(Math.round((total + elapsed / 3600000) * 100) / 100);
-    const obj = { workedHours: total };
+    const obj = { total_hours: total };
     const edited = { ...user, ...obj };
-    userData.map((el, i) => {
-      if (el.id === user.id) {
-        userData.splice(i, 1, edited);
-      }
-    });
-    console.log(userData);
-    console.log('useEff');
+    // dispatch(updateUser(edited));
   }, [clock.end]);
 
   const handleLogout = (e) => {
     e.preventDefault();
-    localStorage.removeItem('userId');
-    dispatch(logout());
+    dispatch(logout(total, user));
   };
 
   const clockIn = () => {
@@ -66,8 +58,8 @@ const Controller = ({ auth }) => {
     <div className='controllerContainer'>
       <div className='controlHeader'>
         <div className='userDetails'>
-          <h1>{user.fullName}</h1>
-          <p>{user.username}</p>
+          <h1>{user.full_name}</h1>
+          <p>{user.email}</p>
           <p>{user.department}</p>
         </div>
         <div className='userDetailRight'>
@@ -76,7 +68,7 @@ const Controller = ({ auth }) => {
               <Link to='/admin'> admin page</Link>
             </Button>
           )}
-          <Button onClick={handleLogout}>Logout</Button>
+          <Button onClick={(e) => handleLogout(e)}>Logout</Button>
         </div>
       </div>
       <div className='controller'>

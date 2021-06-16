@@ -1,2 +1,3 @@
 # Reesby HR
-## test username: admin, password: admin123
+
+## test username: admin, password: admin

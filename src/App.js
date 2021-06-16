@@ -9,7 +9,9 @@ import AdminPage from './components/AdminPage';
 import UserEdit from './components/UserEdit';
 import userData from './userDatabase';
 import { login } from './actions/login';
+import { getEvents } from './actions/getEvents';
 import WelcomePage from './components/WelcomePage';
+import jwt_decode from 'jwt-decode';
 
 function App() {
   const history = useHistory();
@@ -24,9 +26,12 @@ function App() {
   const localUser = localStorage.getItem('userId');
 
   const user = useSelector((state) => state.auth);
-  if (localUser !== null && !user.isAuthenticated) {
-    const validUser = userData.filter((user) => user.id === localUser)[0];
-    dispatch(login(validUser));
+  console.log(user.user);
+  if (localStorage.token && !user.isAuthenticated) {
+    const details = jwt_decode(localStorage.token);
+    console.log(details);
+    dispatch(login(details));
+    dispatch(getEvents());
   }
 
   return (
@@ -49,7 +54,13 @@ function App() {
             )}
           </Route>
           <Route path='/dashboard'>
-            {user.isAuthenticated ? <HomePage /> : <Redirect to='/' />}
+            {user.user && user.user.is_active ? (
+              <HomePage />
+            ) : user.user && !user.user.is_active ? (
+              <Redirect to='/pending' />
+            ) : (
+              <Redirect to='/' />
+            )}
           </Route>
           <Route path='/pending'>
             <PendingPage />

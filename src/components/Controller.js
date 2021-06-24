@@ -63,7 +63,7 @@ const Controller = ({ auth }) => {
           <p>{user.department}</p>
         </div>
         <div className='userDetailRight'>
-          {auth.isAdmin && (
+          {auth.user.is_superuser && (
             <Button>
               <Link to='/admin'> admin page</Link>
             </Button>

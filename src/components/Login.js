@@ -64,6 +64,7 @@ const Login = () => {
           <input type='submit' value='Login' />
         </div>
         {errors && <p className='errorMessage'>{errors.msg}</p>}
+        <Link to='/resetpassword'> Forget password?</Link>
         <Link to='/signup'> Create an account</Link>
       </form>
     </div>

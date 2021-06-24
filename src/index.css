@@ -6,6 +6,7 @@
     'Lucida Sans', Arial, sans-serif;
 }
 @import '~antd/dist/antd.css';
+
 body {
   background-color: #eeeeee;
 }
@@ -167,7 +168,7 @@ table {
   width: 100%;
   text-align: left;
   border-collapse: collapse;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 th {

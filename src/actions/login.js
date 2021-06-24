@@ -5,7 +5,7 @@ import { getEvents } from './getEvents';
 export const login = (details, history) => async (dispatch) => {
   try {
     const res = await axiosInstance(history).post('auth/login', details);
-    console.log(res);
+    console.log(res, 'login res');
     if (res && res.data.user.is_active) {
       localStorage.token = res.data.token;
       dispatch(getEvents());

@@ -1,0 +1,259 @@
+.adminPage {
+  display: flex;
+  position: relative;
+  height: 100vh;
+}
+.adminSide button {
+  font-size: 16px;
+  color: #b6b6b6;
+  width: 100%;
+  text-align: left;
+  /* height: 50px;   */
+}
+.adminPage .adminSide button:hover {
+  color: #3c3b3f;
+  background-color: rgb(212, 211, 211);
+}
+.adminPage table,
+.adminPage td,
+.adminPage th,
+.adminPage td {
+  border: none;
+}
+.adminPage table {
+  table-layout: auto;
+}
+
+.ant-table {
+  min-width: 300px;
+  /* overflow: scroll; */
+}
+
+.adminSide {
+  display: grid;
+  grid-template-rows: 60px auto;
+  background-color: #23232e;
+  padding: 15px;
+  width: 250px;
+  color: #b6b6b6;
+}
+.adminMain {
+  display: grid;
+
+  position: relative;
+  grid-template-rows: 1fr 4fr;
+  width: 100%;
+}
+
+.adminHeader {
+  background-color: rgb(52, 247, 188);
+}
+.adminFooter {
+  background-color: rgb(212, 211, 211);
+}
+.adminContent {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 10%;
+  /* left: 5%;
+    right: 5%; */
+  width: 80%;
+  border-radius: 10px;
+  padding: 5px;
+  justify-self: center;
+  min-width: 320px;
+  overflow: scroll;
+}
+
+.adminSide .nav-link svg {
+  width: 2rem;
+  min-width: 2rem;
+  margin: 0 1.5rem;
+}
+.logo svg {
+  transform: rotate(0deg);
+  transition: 600ms;
+}
+
+.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+
+  font-size: 1.5rem;
+  letter-spacing: 0.3ch;
+  width: 100%;
+}
+.adminMain .adminContent .action {
+  display: flex;
+  flex-direction: row;
+}
+.adminMain .adminContent button {
+  margin-right: 5px;
+}
+.contentTitle {
+  margin: 10px 0 0 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 0.3ch;
+  width: 100%;
+}
+
+.contentHeader {
+  margin: 10px;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 5px;
+}
+
+.anticon-search {
+  color: rgba(55, 115, 243, 0.712);
+}
+.vewButton {
+  color: rgb(21, 24, 41);
+  border: rgb(21, 24, 41) 1px solid;
+}
+.adminContent::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.adminContent::-webkit-scrollbar-track {
+  background: #bcbcc7;
+}
+
+.adminContent::-webkit-scrollbar-thumb {
+  background: #23232e;
+}
+.footer {
+  position: relative;
+  top: 0;
+}
+
+.adminSide .nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 800px) {
+  .adminSide {
+    width: 70px;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    justify-content: center;
+    transition: width 200ms ease;
+  }
+  .adminMain {
+    margin-left: 70px;
+  }
+
+  .adminSide:hover {
+    width: 220px;
+  }
+  .adminSide:hover .logo svg {
+    transform: rotate(-180deg);
+  }
+  .adminSide .nav-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* .adminSide:hover .nav-items {
+    align-items: flex-start;
+  } */
+  .adminSide .nav-text {
+    display: none;
+  }
+  .adminSide:hover .nav-text {
+    display: inline;
+    font-size: 15px;
+  }
+  .adminSide:hover button {
+    text-align: left;
+    margin-left: 20px;
+  }
+  .adminSide button {
+    font-size: 30px;
+    /* padding: 10px 5px; */
+    text-align: center;
+    width: 100%;
+    height: 80px;
+  }
+
+  /* .adminSide .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } */
+  .link-text {
+    display: none;
+    margin-left: 1rem;
+  }
+
+  .logo-text {
+    display: block;
+    position: absolute;
+    left: -999px;
+    transition: 600ms;
+  }
+  .adminSide:hover .logo-text {
+    left: 0;
+  }
+  .adminSide:hover .link-text {
+    display: inline-block;
+  }
+  .adminSide:hover .nav-link svg {
+    margin-left: 150px;
+  }
+  .contentTitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .adminSide {
+    bottom: 0;
+    width: 100vw;
+    height: 5rem;
+  }
+
+  .adminSide .nav-items {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .adminSide button {
+    font-size: 30px;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .adminSide:hover button {
+    margin-left: 0;
+  }
+
+  .adminMain {
+    margin-left: 0;
+  }
+  .logo {
+    display: none;
+  }
+
+  .adminSide:hover .nav-text {
+    display: none;
+  }
+  .adminSide {
+    width: 100%;
+  }
+  .adminSide:hover {
+    width: 100%;
+  }
+  .contentTitle {
+    font-size: 1rem;
+  }
+  .adminSide {
+    padding: 11px;
+  }
+}
